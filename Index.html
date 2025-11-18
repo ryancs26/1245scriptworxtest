@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ScriptWoRx for Medical Specialists</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      /* Adjust these to perfectly match the live site if needed */
+      --primary: #0974f3;       /* main blue */
+      --accent:  #0c9da8;       /* teal accent */
+      --bg:      #f5f7fb;       /* light background */
+      --text:    #222733;       /* body text */
+      --muted:   #5b6475;       /* secondary text */
+      --card:    #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1rem;
+    }
+
+    .card {
+      max-width: 960px;
+      width: 100%;
+      background-color: var(--card);
+      border-radius: 12px;
+      padding: 2.5rem 2rem 2.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border-top: 5px solid var(--accent);
+    }
+
+    h1, h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .primary-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 0 auto 2.25rem;
+      padding: 0;
+      list-style: none;
+    }
+
+    .primary-nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .section-label {
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat {
+      margin: 1.5rem 0 2rem;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      background: linear-gradient(
+        135deg,
+        rgba(12, 157, 168, 0.06),
+        rgba(22, 53, 91, 0.06)
+      );
+      border-left: 4px solid var(--accent);
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-video {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      background-color: #000;
+    }
+
+    .stat {
+      margin: 1.25rem 0 1.5rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature {
+      border: 1px solid rgba(9, 116, 243, 0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      background-color: #fff;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .cta-panel {
+      margin: 3rem 0;
+      padding: 2rem;
+      border-radius: 14px;
+      background: linear-gradient(120deg, rgba(9, 116, 243, 0.12), rgba(12, 157, 168, 0.12));
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      background-color: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s ease;
+    }
+
+    .cta-button:hover,
+    .cta-button:focus-visible {
+      opacity: 0.85;
+    }
+
+    .support-card {
+      border-top: 3px solid var(--accent);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .page-wrap {
+        padding: 2rem 1rem;
+      }
+
+      .card {
+        padding: 1.75rem 1.5rem 2.25rem;
+      }
+
+      .primary-nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <main class="card">
+      <nav class="primary-nav" aria-label="Primary navigation">
+        <a href="#what-is">What is ScriptWoRx?</a>
+        <a href="#features">Features</a>
+        <a href="#demo">Book in a demo</a>
+        <a href="#support">ScriptWoRx support</a>
+      </nav>
+
+      <section id="what-is" class="hero">
+        <div>
+          <div class="eyebrow">For medical specialists</div>
+          <h1>ScriptWoRx electronic prescribing</h1>
+          <p class="tagline">
+            AdhereOn's ScriptWoRx is the complete electronic prescribing platform crafted by an
+            innovative, award-winning ophthalmologist and vitreoretinal surgeon for medical specialists.
+          </p>
+          <div class="stat">
+            Since May 2020, more than 143 million electronic prescriptions (originals and repeats) have
+            been issued as Australia embraces digital scripts.
+          </div>
+          <p>
+            ScriptWoRx closes the functionality gap for specialist prescribers with workflow-aware tools
+            built to handle complex authority medications and integrate with government identifiers.
+          </p>
+        </div>
+        <div>
+          <video class="hero-video" src="SCRWX%20animation.mp4" autoplay muted loop playsinline controls>
+            Your browser does not support the video tag. You can download the video directly in the project folder.
+          </video>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
+        <p>
+          Every aspect of ScriptWoRx was designed to mirror the way specialists prescribe: fast, accurate, and
+          always compliant with local regulatory requirements.
+        </p>
+        <div class="feature-grid">
+          <article class="feature">
+            <h3>Designed for specialists</h3>
+            <p>
+              Built for medical specialists who prescribe complex authority medications so you can create,
+              review, and send scripts without unnecessary GP-focused steps.
+            </p>
+          </article>
+          <article class="feature">
+            <h3>Authority-ready workflows</h3>
+            <p>
+              Structure scripts for Highly Specialised Drugs with all PBS requirements captured up front,
+              reducing back-and-forth for authority approvals.
+            </p>
+          </article>
+          <article class="feature">
+            <h3>Secure digital delivery</h3>
+            <p>
+              Encrypted, cloud-based prescribing that keeps patient data safe while giving your team access from
+              any secure, compliant workstation.
+            </p>
+          </article>
+          <article class="feature">
+            <h3>Regulatory alignment</h3>
+            <p>
+              ScriptWoRx aligns with Australian Digital Health Agency initiatives and integrates with national
+              Health Identifier infrastructure.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="demo" class="cta-panel">
+        <h2>Book in a demo</h2>
+        <p>
+          See how ScriptWoRx can fit into your specialist clinic, migrate existing PBS schedules, and deliver
+          measurable time savings across prescribing workflows.
+        </p>
+        <a class="cta-button" href="mailto:hello@scriptworx.com?subject=Book%20a%20ScriptWoRx%20demo">Request a live demo</a>
+      </section>
+
+      <section id="support" class="support-card">
+        <h2>ScriptWoRx support</h2>
+        <p>
+          Our support specialists provide onboarding assistance, compliance updates, and ongoing troubleshooting
+          for every practice. Reach out for training refreshers, integration guidance, or to share product
+          feedback that keeps ScriptWoRx evolving with your needs.
+        </p>
+        <p>
+          Email support@scriptworx.com or contact your account manager directly for dedicated assistance.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
