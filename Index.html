@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>ScriptWoRx for Medical Specialists</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Recommended sans-serif font: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       /* Adjust these to perfectly match the live site if needed */
@@ -25,17 +29,125 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
       background-color: var(--bg);
       color: var(--text);
     }
 
+    /* ===== SITE HEADER / NAVBAR ===== */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .brand-mark {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .primary-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .primary-nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding-bottom: 0.1rem;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .primary-nav a:hover,
+    .primary-nav a:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.2rem;
+      border-radius: 999px;
+      background-color: var(--primary);
+      color: #fff !important;
+      border-bottom: none !important;
+      box-shadow: 0 4px 12px rgba(9, 116, 243, 0.3);
+    }
+
+    .nav-cta:hover,
+    .nav-cta:focus-visible {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner {
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .primary-nav {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+      }
+    }
+
+    /* ===== PAGE LAYOUT ===== */
+
     .page-wrap {
-      min-height: 100vh;
+      min-height: calc(100vh - 72px); /* subtract approx header height */
       display: flex;
       justify-content: center;
-      padding: 3rem 1rem;
+      align-items: center;
+      padding: 3.5rem 1rem;
     }
 
     .card {
@@ -73,33 +185,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .primary-nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin: 0 auto 2.25rem;
-      padding: 0;
-      list-style: none;
-    }
-
-    .primary-nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.92rem;
-      padding-bottom: 0.2rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s ease, border-color 0.2s ease;
-    }
-
-    .primary-nav a:hover,
-    .primary-nav a:focus-visible {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
     p {
       margin-bottom: 1rem;
     }
@@ -112,7 +197,7 @@
     }
 
     .stat {
-      margin: 1.5rem 0 2rem;
+      margin: 1.25rem 0 1.5rem;
       padding: 1rem 1.25rem;
       border-radius: 10px;
       background: linear-gradient(
@@ -125,24 +210,31 @@
       font-weight: 500;
     }
 
+    /* ===== HERO SECTION WITH ANIMATION ===== */
+
     .hero {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
       align-items: center;
       margin-bottom: 2.5rem;
     }
 
-    .hero-video {
-      width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    .hero-animation-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-animation {
+      max-width: 100%;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
       background-color: #000;
     }
 
-    .stat {
-      margin: 1.25rem 0 1.5rem;
-    }
+    /* ===== FEATURES, CTA, SUPPORT ===== */
 
     .feature-grid {
       display: grid;
@@ -198,30 +290,54 @@
 
     @media (max-width: 768px) {
       .page-wrap {
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem 2rem;
+        align-items: flex-start;
       }
 
       .card {
         padding: 1.75rem 1.5rem 2.25rem;
       }
 
-      .primary-nav {
-        flex-direction: column;
-        gap: 0.5rem;
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-animation-wrapper {
+        order: -1; /* show animation above text on mobile if you prefer */
       }
     }
   </style>
 </head>
 <body>
-  <div class="page-wrap">
-    <main class="card">
+  <!-- HEADER / NAV -->
+  <header class="site-header">
+    <div class="nav-inner">
+      <a href="#top" class="brand">
+        <!-- Animated logo top-left -->
+        <img
+          src="ScriptworX-animation2.gif"
+          alt="ScriptWoRx animated logo"
+          class="brand-mark"
+        />
+        <span class="brand-text">
+          <span class="brand-title">ScriptWoRx</span>
+          <span class="brand-subtitle">Electronic prescribing for specialists</span>
+        </span>
+      </a>
       <nav class="primary-nav" aria-label="Primary navigation">
         <a href="#what-is">What is ScriptWoRx?</a>
         <a href="#features">Features</a>
         <a href="#demo">Book in a demo</a>
-        <a href="#support">ScriptWoRx support</a>
+        <a href="#support">Support</a>
+        <a href="#demo" class="nav-cta">Book a demo</a>
       </nav>
+    </div>
+  </header>
 
+  <!-- MAIN CONTENT -->
+  <div class="page-wrap" id="top">
+    <main class="card">
+      <!-- HERO WITH ANIMATION IN THE MIDDLE OF THE SCREEN -->
       <section id="what-is" class="hero">
         <div>
           <div class="eyebrow">For medical specialists</div>
@@ -239,10 +355,13 @@
             built to handle complex authority medications and integrate with government identifiers.
           </p>
         </div>
-        <div>
-          <video class="hero-video" src="SCRWX%20animation.mp4" autoplay muted loop playsinline controls>
-            Your browser does not support the video tag. You can download the video directly in the project folder.
-          </video>
+        <div class="hero-animation-wrapper">
+          <!-- Animated logo used again as hero visual -->
+          <img
+            src="ScriptworX-animation2.gif"
+            alt="ScriptWoRx animated prescribing animation"
+            class="hero-animation"
+          />
         </div>
       </section>
 
@@ -290,7 +409,9 @@
           See how ScriptWoRx can fit into your specialist clinic, migrate existing PBS schedules, and deliver
           measurable time savings across prescribing workflows.
         </p>
-        <a class="cta-button" href="mailto:hello@scriptworx.com?subject=Book%20a%20ScriptWoRx%20demo">Request a live demo</a>
+        <a class="cta-button" href="mailto:hello@scriptworx.com?subject=Book%20a%20ScriptWoRx%20demo">
+          Request a live demo
+        </a>
       </section>
 
       <section id="support" class="support-card">
