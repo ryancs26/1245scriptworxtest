@@ -210,7 +210,7 @@
       font-weight: 500;
     }
 
-    /* ===== HERO SECTION WITH ANIMATION ===== */
+    /* ===== HERO SECTION WITH LOGO IMAGE ===== */
 
     .hero {
       display: grid;
@@ -227,11 +227,12 @@
     }
 
     .hero-animation {
-      max-width: 100%;
+      max-width: 320px;
+      width: 100%;
       height: auto;
       border-radius: 18px;
       box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-      background-color: #000;
+      background-color: transparent;
     }
 
     /* ===== FEATURES, CTA, SUPPORT ===== */
@@ -303,7 +304,7 @@
       }
 
       .hero-animation-wrapper {
-        order: -1; /* show animation above text on mobile if you prefer */
+        order: -1; /* show logo above text on mobile if you prefer */
       }
     }
   </style>
@@ -313,10 +314,10 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#top" class="brand">
-        <!-- Animated logo top-left -->
+        <!-- Logo PNG top-left -->
         <img
-          src="ScriptworX-animation2.gif"
-          alt="ScriptWoRx animated logo"
+          src="logoscrw300.png"
+          alt="ScriptWoRx logo"
           class="brand-mark"
         />
         <span class="brand-text">
@@ -337,7 +338,7 @@
   <!-- MAIN CONTENT -->
   <div class="page-wrap" id="top">
     <main class="card">
-      <!-- HERO WITH ANIMATION IN THE MIDDLE OF THE SCREEN -->
+      <!-- HERO WITH LOGO IMAGE -->
       <section id="what-is" class="hero">
         <div>
           <div class="eyebrow">For medical specialists</div>
@@ -356,10 +357,10 @@
           </p>
         </div>
         <div class="hero-animation-wrapper">
-          <!-- Animated logo used again as hero visual -->
+          <!-- Same logo PNG as hero visual -->
           <img
-            src="ScriptworX-animation2.gif"
-            alt="ScriptWoRx animated prescribing animation"
+            src="logoscrw300.png"
+            alt="ScriptWoRx logo"
             class="hero-animation"
           />
         </div>
