@@ -5,14 +5,13 @@
   <title>ScriptWoRx for Medical Specialists</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Recommended sans-serif font: Inter -->
+  <!-- Sans-serif font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Adjust these to perfectly match the live site if needed */
       --primary: #0974f3;       /* main blue */
-      --accent:  #0c9da8;       /* teal accent */
+      --accent:  #0974f3;       /* same as primary, no teal */
       --bg:      #f5f7fb;       /* light background */
       --text:    #222733;       /* body text */
       --muted:   #5b6475;       /* secondary text */
@@ -140,34 +139,23 @@
       }
     }
 
-    /* ===== PAGE LAYOUT ===== */
+    /* ===== FULL-WIDTH HERO ===== */
 
-    .page-wrap {
-      min-height: calc(100vh - 72px); /* subtract approx header height */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 3.5rem 1rem;
-    }
-
-    .card {
-      max-width: 960px;
+    .hero {
       width: 100%;
-      background-color: var(--card);
-      border-radius: 12px;
-      padding: 2.5rem 2rem 2.75rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      border-top: 5px solid var(--accent);
+      background-color: #ffffff;
+      padding: 4rem 1.5rem;
+      display: flex;
+      align-items: center;           /* vertical centering */
     }
 
-    h1, h2 {
-      color: var(--primary);
-      margin-top: 0;
-    }
-
-    h1 {
-      font-size: 2.1rem;
-      margin-bottom: 0.25rem;
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
     }
 
     .eyebrow {
@@ -179,63 +167,92 @@
       margin-bottom: 0.5rem;
     }
 
+    h1, h2 {
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
+    }
+
     .tagline {
       font-weight: 600;
       color: var(--muted);
       margin-bottom: 1.5rem;
     }
 
-    p {
-      margin-bottom: 1rem;
-    }
-
-    .section-label {
-      font-weight: 700;
-      color: var(--primary);
-      margin-top: 1.5rem;
-      margin-bottom: 0.25rem;
-    }
-
     .stat {
       margin: 1.25rem 0 1.5rem;
       padding: 1rem 1.25rem;
       border-radius: 10px;
-      background: linear-gradient(
-        135deg,
-        rgba(12, 157, 168, 0.06),
-        rgba(22, 53, 91, 0.06)
-      );
-      border-left: 4px solid var(--accent);
+      background: #f1f5ff;
+      border-left: 4px solid var(--primary);
       color: var(--primary);
       font-weight: 500;
     }
 
-    /* ===== HERO SECTION WITH LOGO IMAGE ===== */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 2.5rem;
-      align-items: center;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-animation-wrapper {
+    .hero-media-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .hero-animation {
-      max-width: 320px;
+    .hero-media {
       width: 100%;
-      height: auto;
+      max-width: 420px;
       border-radius: 18px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-      background-color: transparent;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+      overflow: hidden;
     }
 
-    /* ===== FEATURES, CTA, SUPPORT ===== */
+    .hero-media video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 3rem 1.25rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-media-wrapper {
+        order: -1; /* video above text on mobile; remove if you prefer below */
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    /* ===== REST OF PAGE (CARD) ===== */
+
+    .page-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 3rem 1rem 3.5rem;
+    }
+
+    .card {
+      max-width: 960px;
+      width: 100%;
+      background-color: var(--card);
+      border-radius: 12px;
+      padding: 2.5rem 2rem 2.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border-top: 4px solid var(--primary);
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
 
     .feature-grid {
       display: grid;
@@ -262,7 +279,7 @@
       margin: 3rem 0;
       padding: 2rem;
       border-radius: 14px;
-      background: linear-gradient(120deg, rgba(9, 116, 243, 0.12), rgba(12, 157, 168, 0.12));
+      background: linear-gradient(120deg, rgba(9, 116, 243, 0.12), rgba(9, 116, 243, 0.05));
       text-align: center;
     }
 
@@ -284,27 +301,18 @@
     }
 
     .support-card {
-      border-top: 3px solid var(--accent);
+      border-top: 3px solid var(--primary);
       margin-top: 2rem;
       padding-top: 1.5rem;
     }
 
     @media (max-width: 768px) {
       .page-wrap {
-        padding: 2.5rem 1rem 2rem;
-        align-items: flex-start;
+        padding: 2.5rem 1rem 3rem;
       }
 
       .card {
         padding: 1.75rem 1.5rem 2.25rem;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-animation-wrapper {
-        order: -1; /* show logo above text on mobile if you prefer */
       }
     }
   </style>
@@ -314,12 +322,7 @@
   <header class="site-header">
     <div class="nav-inner">
       <a href="#top" class="brand">
-        <!-- Logo PNG top-left -->
-        <img
-          src="logoscrw300.png"
-          alt="ScriptWoRx logo"
-          class="brand-mark"
-        />
+        <img src="logoscrw300.png" alt="ScriptWoRx logo" class="brand-mark" />
         <span class="brand-text">
           <span class="brand-title">ScriptWoRx</span>
           <span class="brand-subtitle">Electronic prescribing for specialists</span>
@@ -335,37 +338,39 @@
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- FULL-WIDTH HERO (CENTERED) -->
+  <section id="what-is" class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">For medical specialists</div>
+        <h1>ScriptWoRx electronic prescribing</h1>
+        <p class="tagline">
+          AdhereOn's ScriptWoRx is the complete electronic prescribing platform crafted by an
+          innovative, award-winning ophthalmologist and vitreoretinal surgeon for medical specialists.
+        </p>
+        <div class="stat">
+          Since May 2020, more than 143 million electronic prescriptions (originals and repeats) have
+          been issued as Australia embraces digital scripts.
+        </div>
+        <p>
+          ScriptWoRx closes the functionality gap for specialist prescribers with workflow-aware tools
+          built to handle complex authority medications and integrate with government identifiers.
+        </p>
+      </div>
+
+      <div class="hero-media-wrapper">
+        <div class="hero-media">
+          <video src="SCRWX%20animation.mp4" autoplay muted loop playsinline controls>
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT CARD -->
   <div class="page-wrap" id="top">
     <main class="card">
-      <!-- HERO WITH LOGO IMAGE -->
-      <section id="what-is" class="hero">
-        <div>
-          <div class="eyebrow">For medical specialists</div>
-          <h1>ScriptWoRx electronic prescribing</h1>
-          <p class="tagline">
-            AdhereOn's ScriptWoRx is the complete electronic prescribing platform crafted by an
-            innovative, award-winning ophthalmologist and vitreoretinal surgeon for medical specialists.
-          </p>
-          <div class="stat">
-            Since May 2020, more than 143 million electronic prescriptions (originals and repeats) have
-            been issued as Australia embraces digital scripts.
-          </div>
-          <p>
-            ScriptWoRx closes the functionality gap for specialist prescribers with workflow-aware tools
-            built to handle complex authority medications and integrate with government identifiers.
-          </p>
-        </div>
-        <div class="hero-animation-wrapper">
-          <!-- Same logo PNG as hero visual -->
-          <img
-            src="logoscrw300.png"
-            alt="ScriptWoRx logo"
-            class="hero-animation"
-          />
-        </div>
-      </section>
-
       <section id="features">
         <h2>Features</h2>
         <p>
