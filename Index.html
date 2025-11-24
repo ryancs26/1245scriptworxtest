@@ -4,393 +4,351 @@
   <meta charset="UTF-8">
   <title>ScriptWoRx for Medical Specialists</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Sans-serif font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary: #0974f3;       /* main blue */
-      --accent:  #0974f3;       /* same as primary, no teal */
-      --bg:      #f5f7fb;       /* light background */
-      --text:    #222733;       /* body text */
-      --muted:   #5b6475;       /* secondary text */
-      --card:    #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.6;
-      background-color: var(--bg);
-      color: var(--text);
-    }
-
-    /* ===== SITE HEADER / NAVBAR ===== */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background-color: #ffffff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: var(--primary);
-    }
-
-    .brand-mark {
-      height: 42px;
-      width: auto;
-      display: block;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .brand-title {
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .brand-subtitle {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .primary-nav {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .primary-nav a {
-      text-decoration: none;
-      color: var(--primary);
-      font-weight: 600;
-      font-size: 0.92rem;
-      padding-bottom: 0.1rem;
-      border-bottom: 2px solid transparent;
-      transition: color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-    }
-
-    .primary-nav a:hover,
-    .primary-nav a:focus-visible {
-      color: var(--accent);
-      border-color: var(--accent);
-    }
-
-    .nav-cta {
-      padding: 0.45rem 1.2rem;
-      border-radius: 999px;
-      background-color: var(--primary);
-      color: #fff !important;
-      border-bottom: none !important;
-      box-shadow: 0 4px 12px rgba(9, 116, 243, 0.3);
-    }
-
-    .nav-cta:hover,
-    .nav-cta:focus-visible {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 768px) {
-      .nav-inner {
-        flex-wrap: wrap;
-        align-items: flex-start;
-      }
-
-      .primary-nav {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 0.5rem;
-      }
-    }
-
-    /* ===== FULL-WIDTH HERO (TEXT ONLY) ===== */
-
-    .hero {
-      width: 100%;
-      background-color: #ffffff;
-      padding: 4rem 1.5rem 3.5rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    h1, h2 {
-      color: var(--primary);
-      margin-top: 0;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .tagline {
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .stat {
-      margin: 1.25rem 0 1.5rem;
-      padding: 1rem 1.25rem;
-      border-radius: 10px;
-      background: #f1f5ff;
-      border-left: 4px solid var(--primary);
-      color: var(--primary);
-      font-weight: 500;
-    }
-
-    @media (max-width: 768px) {
-      .hero {
-        padding: 3rem 1.25rem 3rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-    }
-
-    /* ===== REST OF PAGE (CARD) ===== */
-
-    .page-wrap {
-      display: flex;
-      justify-content: center;
-      padding: 3rem 1rem 3.5rem;
-    }
-
-    .card {
-      max-width: 960px;
-      width: 100%;
-      background-color: var(--card);
-      border-radius: 12px;
-      padding: 2.5rem 2rem 2.75rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      border-top: 4px solid var(--primary);
-    }
-
-    p {
-      margin-bottom: 1rem;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-
-    .feature {
-      border: 1px solid rgba(9, 116, 243, 0.15);
-      border-radius: 12px;
-      padding: 1.25rem;
-      background-color: #fff;
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
-    }
-
-    .feature h3 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: 1rem;
-    }
-
-    .cta-panel {
-      margin: 3rem 0;
-      padding: 2rem;
-      border-radius: 14px;
-      background: linear-gradient(120deg, rgba(9, 116, 243, 0.12), rgba(9, 116, 243, 0.05));
-      text-align: center;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.75rem 1.75rem;
-      border-radius: 999px;
-      background-color: var(--primary);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.2s ease;
-    }
-
-    .cta-button:hover,
-    .cta-button:focus-visible {
-      opacity: 0.85;
-    }
-
-    .support-card {
-      border-top: 3px solid var(--primary);
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .page-wrap {
-        padding: 2.5rem 1rem 3rem;
-      }
-
-      .card {
-        padding: 1.75rem 1.5rem 2.25rem;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <!-- HEADER / NAV -->
+    <!-- HEADER / NAV -->
   <header class="site-header">
     <div class="nav-inner">
       <a href="#top" class="brand">
         <img src="logoscrw300.png" alt="ScriptWoRx logo" class="brand-mark" />
-        <span class="brand-text">
-          <span class="brand-title">ScriptWoRx</span>
-          <span class="brand-subtitle">Electronic prescribing for specialists</span>
-        </span>
+        <span class="brand-copy">Electronic prescribing for specialists</span>
       </a>
       <nav class="primary-nav" aria-label="Primary navigation">
         <a href="#what-is">What is ScriptWoRx?</a>
         <a href="#features">Features</a>
-        <a href="#demo">Book in a demo</a>
+        <a href="#demo">Book a demo</a>
         <a href="#support">Support</a>
-        <a href="#demo" class="nav-cta">Book a demo</a>
       </nav>
     </div>
   </header>
-
-  <!-- FULL-WIDTH HERO (TEXT ONLY) -->
+    <!-- FULL-WIDTH HERO -->
   <section id="what-is" class="hero">
     <div class="hero-inner">
-      <div>
-        <div class="eyebrow">For medical specialists</div>
-        <h1>ScriptWoRx electronic prescribing</h1>
-        <p class="tagline">
-          AdhereOn's ScriptWoRx is the complete electronic prescribing platform crafted by an
-          innovative, award-winning ophthalmologist and vitreoretinal surgeon for medical specialists.
-        </p>
-        <div class="stat">
-          Since May 2020, more than 143 million electronic prescriptions (originals and repeats) have
-          been issued as Australia embraces digital scripts.
+      <div class="hero-stack">
+        <div class="hero-copy">
+          <h1 class="title-blue">ScriptWoRx electronic prescribing</h1>
+          <p class="tagline text-black">
+            AdhereOn's ScriptWoRx unites script generation and approval in one seamless platform,
+            purpose-built for specialists by an award-winning ophthalmologist and vitreoretinal surgeon.
+            Discover how ScriptWoRx can save you time and administrative burden through instant approvals
+            for complex authority drugs.
+          </p>
         </div>
-        <p>
-          ScriptWoRx closes the functionality gap for specialist prescribers with workflow-aware tools
-          built to handle complex authority medications and integrate with government identifiers.
-        </p>
+
+        <div class="hero-media">
+          <h2 class="hero-title">What is ScriptWoRx?</h2>
+          <div class="video-wrapper">
+            <video class="hero-video" src="https://12459scriptworxtest.netlify.app/scriptvid.mp4" muted playsinline autoplay controls preload="auto" crossorigin="anonymous">
+              <source src="https://12459scriptworxtest.netlify.app/scriptvid.mp4" type="video/mp4" />
+              Your browser does not support the video tag. You can watch it directly on the hosted site.
+            </video>
+            <div class="video-overlay">&#9654;</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-heading">Total script approvals to date</div>
+        <div class="stat-value" id="script-counter">143,000,008</div>
       </div>
     </div>
   </section>
-
-  <!-- MAIN CONTENT CARD -->
+  <!-- MAIN CONTENT -->
   <div class="page-wrap" id="top">
-    <main class="card">
-      <section id="features">
-        <h2>Features</h2>
-        <p>
-          Every aspect of ScriptWoRx was designed to mirror the way specialists prescribe: fast, accurate, and
-          always compliant with local regulatory requirements.
-        </p>
-        <div class="feature-grid">
-          <article class="feature">
-            <h3>Designed for specialists</h3>
-            <p>
-              Built for medical specialists who prescribe complex authority medications so you can create,
-              review, and send scripts without unnecessary GP-focused steps.
-            </p>
+    <section id="features" class="card">
+      <h2 class="title-blue">Key features</h2>
+      <p>
+        Every aspect of ScriptWoRx was designed to mirror the way specialists prescribe: fast, accurate, and
+        always compliant with local regulatory requirements.
+      </p>
+      <div class="feature-slider" data-slider>
+        <button type="button" class="slider-control" data-prev aria-label="Previous feature">&#10094;</button>
+        <div class="feature-track" data-track>
+          <article class="feature-slide">
+            <div class="feature-visual" aria-hidden="true">
+              <img src="https://12459scriptworxtest.netlify.app/specialist3.png" alt="Designed for specialists illustration" loading="lazy" />
+            </div>
+            <div class="feature-content">
+              <h3 class="title-blue">Designed for specialists</h3>
+              <p>
+                Built for medical specialists who prescribe complex authority medications so you can create,
+                review, and send scripts without unnecessary GP-focused steps.
+              </p>
+            </div>
           </article>
-          <article class="feature">
-            <h3>Authority-ready workflows</h3>
-            <p>
-              Structure scripts for Highly Specialised Drugs with all PBS requirements captured up front,
-              reducing back-and-forth for authority approvals.
-            </p>
+          <article class="feature-slide">
+            <div class="feature-visual" aria-hidden="true">
+              <img src="https://12459scriptworxtest.netlify.app/script1.png" alt="Authority-ready workflows illustration" loading="lazy" />
+            </div>
+            <div class="feature-content">
+              <h3 class="title-black">Authority-ready workflows</h3>
+              <p>
+                Structure scripts for Highly Specialised Drugs with all PBS requirements captured up front,
+                reducing back-and-forth for authority approvals.
+              </p>
+            </div>
           </article>
-          <article class="feature">
-            <h3>Secure digital delivery</h3>
-            <p>
-              Encrypted, cloud-based prescribing that keeps patient data safe while giving your team access from
-              any secure, compliant workstation.
-            </p>
-          </article>
-          <article class="feature">
-            <h3>Regulatory alignment</h3>
-            <p>
-              ScriptWoRx aligns with Australian Digital Health Agency initiatives and integrates with national
-              Health Identifier infrastructure.
-            </p>
+            <article class="feature-slide">
+              <div class="feature-visual" aria-hidden="true">
+                <img src="https://12459scriptworxtest.netlify.app/secure5.png" alt="Secure delivery illustration" loading="lazy" />
+              </div>
+              <div class="feature-content">
+                <h3 class="title-blue">Secure digital delivery</h3>
+                <p>
+                  Encrypted, cloud-based prescribing that keeps patient data safe while giving your team access from
+                  any secure, compliant workstation.
+                </p>
+              </div>
+            </article>
+            <article class="feature-slide">
+              <div class="feature-visual" aria-hidden="true">
+                <img src="https://12459scriptworxtest.netlify.app/legalcomp5.png" alt="Regulatory compliance illustration" loading="lazy" />
+              </div>
+              <div class="feature-content">
+                <h3 class="title-black">Regulatory alignment</h3>
+                <p>
+                  ScriptWoRx aligns with Australian Digital Health Agency initiatives and integrates with national
+                  Health Identifier infrastructure.
+              </p>
+            </div>
           </article>
         </div>
-      </section>
+        <button type="button" class="slider-control" data-next aria-label="Next feature">&#10095;</button>
+        <div class="feature-dots">
+          <button type="button" class="active" data-slide="0" aria-label="Go to slide 1"></button>
+          <button type="button" data-slide="1" aria-label="Go to slide 2"></button>
+          <button type="button" data-slide="2" aria-label="Go to slide 3"></button>
+          <button type="button" data-slide="3" aria-label="Go to slide 4"></button>
+        </div>
+      </div>
+    </section>
+  </div>
 
-      <section id="demo" class="cta-panel">
-        <h2>Book in a demo</h2>
+  <div class="page-wrap">
+    <section id="demo" class="card cta-panel">
+      <h2 class="title-blue">Book a demo</h2>
+      <div class="node-animation" aria-hidden="true">
+        <div class="node-row node-row--inner">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="node-row node-row--outer">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="demo-info">
         <p>
           See how ScriptWoRx can fit into your specialist clinic, migrate existing PBS schedules, and deliver
           measurable time savings across prescribing workflows.
         </p>
-        <a class="cta-button" href="mailto:hello@scriptworx.com?subject=Book%20a%20ScriptWoRx%20demo">
-          Request a live demo
-        </a>
-      </section>
-
-      <section id="support" class="support-card">
-        <h2>ScriptWoRx support</h2>
-        <p>
-          Our support specialists provide onboarding assistance, compliance updates, and ongoing troubleshooting
-          for every practice. Reach out for training refreshers, integration guidance, or to share product
-          feedback that keeps ScriptWoRx evolving with your needs.
-        </p>
-        <p>
-          Email support@scriptworx.com or contact your account manager directly for dedicated assistance.
-        </p>
-      </section>
-    </main>
+        <a class="cta-button" href="mailto:hello@scriptworx.com?subject=Book%20a%20ScriptWoRx%20demo">Request a live demo</a>
+      </div>
+    </section>
   </div>
+
+  <div class="page-wrap">
+    <section id="support" class="card support-card">
+      <h2 class="title-blue">ScriptWoRx support</h2>
+      <div class="chatbox-anim" aria-hidden="true">
+        <div class="chat-bubble chat-bubble--primary">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="chat-bubble chat-bubble--secondary">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+      <p>Our support specialists provide onboarding assistance, compliance updates, and ongoing troubleshooting for every practice. To contact us press the button below.</p>
+      <a class="cta-button" href="mailto:support@scriptworx.com?subject=ScriptWoRx%20support%20request">Contact support</a>
+    </section>
+  </div>
+
+
+  <script>
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    document.querySelectorAll("[data-slider]").forEach((slider) => {
+      const track = slider.querySelector("[data-track]");
+      const slides = Array.from(track.children);
+      const prev = slider.querySelector("[data-prev]");
+      const next = slider.querySelector("[data-next]");
+      const dots = Array.from(slider.querySelectorAll("[data-slide]"));
+      let index = 0;
+      let autoTimer = null;
+      const autoInterval = 5500;
+
+      const update = () => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle("active", dotIndex === index);
+        });
+      };
+
+      const stopAuto = () => {
+        if (autoTimer) {
+          clearInterval(autoTimer);
+          autoTimer = null;
+        }
+      };
+
+      const startAuto = () => {
+        if (prefersReducedMotion) return;
+        stopAuto();
+        autoTimer = setInterval(() => {
+          index = (index + 1) % slides.length;
+          update();
+        }, autoInterval);
+      };
+
+      const goTo = (newIndex) => {
+        index = (newIndex + slides.length) % slides.length;
+        update();
+        startAuto();
+      };
+
+      prev.addEventListener("click", () => goTo(index - 1));
+      next.addEventListener("click", () => goTo(index + 1));
+
+      dots.forEach((dot, dotIndex) => {
+        dot.addEventListener("click", () => goTo(dotIndex));
+      });
+
+      slider.addEventListener("mouseenter", stopAuto);
+      slider.addEventListener("mouseleave", startAuto);
+      slider.addEventListener("touchstart", stopAuto, { passive: true });
+      slider.addEventListener("touchend", startAuto);
+
+      update();
+      startAuto();
+    });
+
+    const heroVideo = document.querySelector(".hero-video");
+    const videoWrapper = document.querySelector(".video-wrapper");
+    const overlay = document.querySelector(".video-overlay");
+    if (heroVideo) {
+      let playbackTriggered = false;
+      let observerInstance = null;
+      let scrollFallbackAttached = false;
+
+      const onScrollCheck = () => {
+        const rect = heroVideo.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          triggerPlay(true);
+        }
+      };
+
+      const detachScrollFallback = () => {
+        if (scrollFallbackAttached) {
+          window.removeEventListener("scroll", onScrollCheck);
+          scrollFallbackAttached = false;
+        }
+      };
+
+      const finalizePlayback = () => {
+        if (playbackTriggered) return;
+        playbackTriggered = true;
+        if (observerInstance) {
+          observerInstance.disconnect();
+          observerInstance = null;
+        }
+        detachScrollFallback();
+      };
+
+      const requestScrollFallback = () => {
+        if (!scrollFallbackAttached) {
+          scrollFallbackAttached = true;
+          window.addEventListener("scroll", onScrollCheck, { passive: true });
+        }
+        onScrollCheck();
+      };
+
+      const triggerPlay = (fromScroll = false) => {
+        if (playbackTriggered) return;
+        const playPromise = heroVideo.play();
+        if (playPromise instanceof Promise) {
+          playPromise
+            .then(() => {
+              finalizePlayback();
+            })
+            .catch(() => {
+              if (!fromScroll) {
+                requestScrollFallback();
+              }
+            });
+        } else {
+          finalizePlayback();
+        }
+      };
+
+      const hideOverlay = () => {
+        if (overlay) {
+          overlay.style.display = "none";
+        }
+      };
+
+      heroVideo.addEventListener("play", () => {
+        hideOverlay();
+        finalizePlayback();
+      });
+      heroVideo.addEventListener("loadeddata", () => {
+        triggerPlay();
+      });
+
+      if (videoWrapper) {
+        videoWrapper.addEventListener("click", triggerPlay);
+      }
+
+      if ("IntersectionObserver" in window) {
+        observerInstance = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                triggerPlay();
+              }
+            });
+          },
+          { threshold: 0.4 }
+        );
+        observerInstance.observe(heroVideo);
+      } else {
+        requestScrollFallback();
+      }
+    }
+
+    const counterValue = document.getElementById("script-counter");
+    if (counterValue) {
+      const baseCount = 143000008;
+      let count = parseInt(localStorage.getItem("scriptCount") || baseCount.toString(), 10);
+      let step = parseInt(localStorage.getItem("scriptStep") || "5", 10);
+      if (count < baseCount) {
+        count = baseCount;
+      }
+
+      const updateDisplay = () => {
+        counterValue.textContent = count.toLocaleString();
+      };
+
+      const increment = () => {
+        count += step;
+        step = step === 5 ? 3 : 5;
+        localStorage.setItem("scriptCount", count.toString());
+        localStorage.setItem("scriptStep", step.toString());
+        updateDisplay();
+      };
+
+      updateDisplay();
+      let intervalId = null;
+      const startCounter = () => {
+        if (intervalId) return;
+        increment();
+        intervalId = setInterval(increment, 10000);
+        window.removeEventListener("scroll", startCounter);
+      };
+
+      window.addEventListener("scroll", startCounter, { passive: true });
+    }
+  </script>
 </body>
 </html>
